@@ -40,6 +40,8 @@
             this.listBoxAlbumsList = new System.Windows.Forms.ListBox();
             this.pictureBoxAlbumsCoverPhoto = new System.Windows.Forms.PictureBox();
             this.buttonFetchAlbums = new System.Windows.Forms.Button();
+            this.radioButtonSortByMessageLength = new System.Windows.Forms.RadioButton();
+            this.radioButtonNone = new System.Windows.Forms.RadioButton();
             this.panelAlbums.SuspendLayout();
             this.groupBoxSortingButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAlbumsCoverPhoto)).BeginInit();
@@ -84,7 +86,7 @@
             // 
             this.buttonSortAlbums.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonSortAlbums.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSortAlbums.Location = new System.Drawing.Point(572, 283);
+            this.buttonSortAlbums.Location = new System.Drawing.Point(572, 348);
             this.buttonSortAlbums.Name = "buttonSortAlbums";
             this.buttonSortAlbums.Size = new System.Drawing.Size(225, 80);
             this.buttonSortAlbums.TabIndex = 6;
@@ -94,11 +96,13 @@
             // 
             // groupBoxSortingButtons
             // 
+            this.groupBoxSortingButtons.Controls.Add(this.radioButtonNone);
+            this.groupBoxSortingButtons.Controls.Add(this.radioButtonSortByMessageLength);
             this.groupBoxSortingButtons.Controls.Add(this.radioButtonSortByAmountOfPhotos);
             this.groupBoxSortingButtons.Controls.Add(this.radioButtonSortByDate);
             this.groupBoxSortingButtons.Location = new System.Drawing.Point(572, 148);
             this.groupBoxSortingButtons.Name = "groupBoxSortingButtons";
-            this.groupBoxSortingButtons.Size = new System.Drawing.Size(225, 128);
+            this.groupBoxSortingButtons.Size = new System.Drawing.Size(225, 194);
             this.groupBoxSortingButtons.TabIndex = 5;
             this.groupBoxSortingButtons.TabStop = false;
             this.groupBoxSortingButtons.Text = "Sort albums by";
@@ -110,7 +114,6 @@
             this.radioButtonSortByAmountOfPhotos.Name = "radioButtonSortByAmountOfPhotos";
             this.radioButtonSortByAmountOfPhotos.Size = new System.Drawing.Size(211, 29);
             this.radioButtonSortByAmountOfPhotos.TabIndex = 1;
-            this.radioButtonSortByAmountOfPhotos.TabStop = true;
             this.radioButtonSortByAmountOfPhotos.Text = "Amount of photos";
             this.radioButtonSortByAmountOfPhotos.UseVisualStyleBackColor = true;
             // 
@@ -121,7 +124,6 @@
             this.radioButtonSortByDate.Name = "radioButtonSortByDate";
             this.radioButtonSortByDate.Size = new System.Drawing.Size(166, 29);
             this.radioButtonSortByDate.TabIndex = 0;
-            this.radioButtonSortByDate.TabStop = true;
             this.radioButtonSortByDate.Text = "Date created";
             this.radioButtonSortByDate.UseVisualStyleBackColor = true;
             // 
@@ -166,6 +168,28 @@
             this.buttonFetchAlbums.UseVisualStyleBackColor = true;
             this.buttonFetchAlbums.Click += new System.EventHandler(this.buttonFetchAlbums_Click);
             // 
+            // radioButtonSortByMessageLength
+            // 
+            this.radioButtonSortByMessageLength.AutoSize = true;
+            this.radioButtonSortByMessageLength.Location = new System.Drawing.Point(8, 112);
+            this.radioButtonSortByMessageLength.Name = "radioButtonSortByMessageLength";
+            this.radioButtonSortByMessageLength.Size = new System.Drawing.Size(203, 29);
+            this.radioButtonSortByMessageLength.TabIndex = 2;
+            this.radioButtonSortByMessageLength.Text = "Message Length";
+            this.radioButtonSortByMessageLength.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonNone
+            // 
+            this.radioButtonNone.AutoSize = true;
+            this.radioButtonNone.Checked = true;
+            this.radioButtonNone.Location = new System.Drawing.Point(8, 147);
+            this.radioButtonNone.Name = "radioButtonNone";
+            this.radioButtonNone.Size = new System.Drawing.Size(94, 29);
+            this.radioButtonNone.TabIndex = 3;
+            this.radioButtonNone.TabStop = true;
+            this.radioButtonNone.Text = "None";
+            this.radioButtonNone.UseVisualStyleBackColor = true;
+            // 
             // FormAlbums
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -199,5 +223,7 @@
         private System.Windows.Forms.RadioButton radioButtonSortByDate;
         private System.Windows.Forms.TextBox textBoxDateCreated;
         private System.Windows.Forms.Label labelDateCreated;
+        private System.Windows.Forms.RadioButton radioButtonSortByMessageLength;
+        private System.Windows.Forms.RadioButton radioButtonNone;
     }
 }

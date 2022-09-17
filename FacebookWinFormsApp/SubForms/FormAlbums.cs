@@ -11,15 +11,17 @@ namespace BasicFacebookFeatures.SubForms
     public partial class FormAlbums : Form
     {
         private readonly FacebookUserManager r_FacebookUserManager;
+        private readonly MyFilteredAlbums r_FilterAlbum;
 
         public FormAlbums()
         {
             InitializeComponent();
             r_FacebookUserManager = FacebookUserManager.Instance;
             this.HandleCreated += FormAlbums_HandleCreated;
+            r_FilterAlbum = new MyFilteredAlbums();
         }
 
-        private void FormAlbums_HandleCreated(object sender, EventArgs e)
+        private void FormAlbums_HandleCreated(object i_Sender, EventArgs i_E)
         {
             new Thread(fetchAlbums).Start();
         }
@@ -35,12 +37,23 @@ namespace BasicFacebookFeatures.SubForms
         private void fetchAlbums()
         {
             listBoxAlbumsList.Invoke(new Action(() => listBoxAlbumsList.Items.Clear()));
-            foreach (Album userAlbum in r_FacebookUserManager.LoggedInUser.Albums)
+            if(radioButtonNone.Checked)
             {
-                listBoxAlbumsList.Invoke(new Action(() => listBoxAlbumsList.Items.Add(userAlbum)));
+                foreach(Album userAlbum in r_FacebookUserManager.LoggedInUser.Albums)
+                {
+                    listBoxAlbumsList.Invoke(new Action(() => listBoxAlbumsList.Items.Add(userAlbum)));
+                }
+            }
+            else
+            {
+                r_FilterAlbum.FilterAlbumList();
+                foreach(Album userAlbum in r_FilterAlbum)
+                {
+                    listBoxAlbumsList.Invoke(new Action(() => listBoxAlbumsList.Items.Add(userAlbum)));
+                }
             }
 
-            if (listBoxAlbumsList.Items.Count == 0)
+            if(listBoxAlbumsList.Items.Count == 0)
             {
                 listBoxAlbumsList.Invoke(new Action(() => listBoxAlbumsList.Items.Add("No Albums to fetch")));
             }
@@ -51,7 +64,7 @@ namespace BasicFacebookFeatures.SubForms
             DateTime? dateTime;
             DateTime createdTime;
 
-            if (listBoxAlbumsList.Items.Count != 0)
+            if(listBoxAlbumsList.Items.Count != 0)
             {
                 labelCoverPhoto.Visible = true;
                 pictureBoxAlbumsCoverPhoto.LoadAsync((listBoxAlbumsList.SelectedItem as Album)?.PictureAlbumURL);
@@ -72,31 +85,26 @@ namespace BasicFacebookFeatures.SubForms
 
         private void buttonSortAlbums_Click(object i_Sender, EventArgs i_E)
         {
-            List<Album> sortedAlbumsList;
-
-            if (listBoxAlbumsList.Items.Count != 0)
+            if(listBoxAlbumsList.Items.Count != 0)
             {
-                if (radioButtonSortByDate.Checked)
+                if(radioButtonSortByDate.Checked)
                 {
-                    sortedAlbumsList = listBoxAlbumsList.Items.Cast<Album>()
-                        .OrderByDescending(i_Album => i_Album.CreatedTime).ToList();
-                    listBoxAlbumsList.Items.Clear();
-                    foreach (Album album in sortedAlbumsList)
-                    {
-                        listBoxAlbumsList.Items.Add(album);
-                    }
+                    r_FilterAlbum.AlbumFilter = new AlbumFilterByDate();
                 }
-                else if (radioButtonSortByAmountOfPhotos.Created)
+
+                if(radioButtonSortByMessageLength.Checked)
                 {
-                    sortedAlbumsList = listBoxAlbumsList.Items.Cast<Album>()
-                        .OrderByDescending(i_Album => i_Album.Photos.Count).ToList();
-                    listBoxAlbumsList.Items.Clear();
-                    foreach (Album album in sortedAlbumsList)
-                    {
-                        listBoxAlbumsList.Items.Add(album);
-                    }
+                    r_FilterAlbum.AlbumFilter = new AlbumFilterByLength();
                 }
+
+                if(radioButtonSortByAmountOfPhotos.Checked)
+                {
+                    r_FilterAlbum.AlbumFilter = new AlbumFilterByAmountOfPhotos();
+                }
+
+                fetchAlbums();
             }
         }
     }
 }
+

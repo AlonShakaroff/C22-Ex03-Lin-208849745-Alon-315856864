@@ -12,6 +12,7 @@ namespace FacebookWinFormsEngine
         public bool FilterAlbum(Album i_AlbumToCheck)
         {
             bool wasAddedSuccessfully = false;
+
             if(i_AlbumToCheck.CreatedTime != null)
             {
                 wasAddedSuccessfully = i_AlbumToCheck.CreatedTime.Value.Year > (DateTime.Now.Year - 2);

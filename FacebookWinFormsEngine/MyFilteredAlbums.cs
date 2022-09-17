@@ -37,7 +37,7 @@ namespace FacebookWinFormsEngine
 
         public void FilterAlbumList()
         {
-            if(m_AlbumFilter !=null && r_FacebookUserManager.LoggedInUser != null)
+            if(m_AlbumFilter != null && r_FacebookUserManager.LoggedInUser != null)
             {
                 r_FilteredAlbumsList.Clear();
                 foreach(Album currentAlbum in r_FacebookUserManager.LoggedInUser.Albums)

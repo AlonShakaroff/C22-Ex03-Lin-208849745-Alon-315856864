@@ -13,9 +13,9 @@ namespace FacebookWinFormsEngine
         {
             bool wasAddedSuccessfully = false;
 
-            if(!string.IsNullOrEmpty(i_AlbumToCheck.Message))
+            if(!string.IsNullOrEmpty(i_AlbumToCheck.Link))
             {
-                wasAddedSuccessfully = i_AlbumToCheck.Message.Length < 50;
+                wasAddedSuccessfully = i_AlbumToCheck.Link.Length < 200;
             }
 
             return wasAddedSuccessfully;

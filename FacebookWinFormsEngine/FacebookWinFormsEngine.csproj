@@ -39,6 +39,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AlbumFilterByAmountOfPhotos.cs" />
     <Compile Include="AlbumFilterByDate.cs" />
     <Compile Include="AlbumFilterByLength.cs" />
     <Compile Include="FacebookUserManager.cs" />
