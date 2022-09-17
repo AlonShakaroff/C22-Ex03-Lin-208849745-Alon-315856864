@@ -1,0 +1,31 @@
+title  FacebookUserManager - Singelton sequence diagram
+
+actor user
+participant "<link:facebook.com>:CollageForm </link>" as CollageForm
+entity "FacebookUserManager instance" as FacebookUserManager
+participant "<link:facebook.com>:FacebookUserCachingProxy </link>" as FacebookUserCachingProxy
+participant "<link:facebook.com>:Facebook Api </link>" as FacebookApi
+
+user->CollageForm:Click fetch all photos
+CollageForm->CollageForm:FetchAllPhotos
+CollageForm->FacebookUserManager:Get logged in user
+FacebookUserManager-->CollageForm:Return logged in user
+CollageForm->FacebookUserCachingProxy:Get user albums
+alt User albums never fetched
+FacebookUserCachingProxy->(5)FacebookApi:Get user albums
+FacebookApi-->FacebookUserCachingProxy:Return user albums
+FacebookUserCachingProxy-->CollageForm:Return user albums
+FacebookUserCachingProxy->FacebookUserCachingProxy: Cache user albums
+else User albums already fetched
+FacebookUserCachingProxy-->CollageForm:Return user albums
+end
+
+Collage-->user:Display user albums list
+user->AlbumsForm:Choose sorting method
+user->AlbumsForm:Click on sort albums button
+
+alt Sort by date created radio button is selected
+AlbumsForm-->user:Display albums sorted by creation date
+else Sort by amount of photos radio button is selected
+AlbumsForm-->user:Display albums sorted by amount of photos
+end

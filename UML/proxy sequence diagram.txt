@@ -1,0 +1,23 @@
+title  SubFormFactory - Factory Method sequence diagram
+
+actor user
+participant "Our Facbook Application" as app
+participant "<link:facebook.com>:FacebookForm </link>" as FacebookForm
+participant "<link:facebook.com>:SubFormFactory </link>" as SubFormFactory
+
+user->app:Opens application
+app->FacebookForm: Creates FacebookForm
+FacebookForm->SubFormFactory:Create AlbumsForm sub form
+SubFormFactory-->FacebookForm:return created AlbumsForm
+FacebookForm->SubFormFactory:Create CollageForm sub form
+SubFormFactory-->FacebookForm:return created CollageForm
+FacebookForm->SubFormFactory:Create an AlbumsForm sub form
+SubFormFactory-->FacebookForm:return created AlbumsForm
+FacebookForm->SubFormFactory:Create an AlbumsForm sub form
+SubFormFactory-->FacebookForm:return created AlbumsForm
+FacebookForm->SubFormFactory:Create an AlbumsForm sub form
+SubFormFactory-->FacebookForm:return created AlbumsForm
+FacebookForm->SubFormFactory:Create an AlbumsForm sub form
+SubFormFactory-->FacebookForm:return created AlbumsForm
+FacebookForm->SubFormFactory:Create an AlbumsForm sub form
+SubFormFactory-->FacebookForm:return created AlbumsForm
