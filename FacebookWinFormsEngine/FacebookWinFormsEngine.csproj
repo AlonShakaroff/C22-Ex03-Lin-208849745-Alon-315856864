@@ -39,8 +39,12 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AlbumFilterByDate.cs" />
+    <Compile Include="AlbumFilterByLength.cs" />
     <Compile Include="FacebookUserManager.cs" />
     <Compile Include="FacebookUserCachingProxy.cs" />
+    <Compile Include="IAlbumFilter.cs" />
+    <Compile Include="MyFilteredAlbums.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
