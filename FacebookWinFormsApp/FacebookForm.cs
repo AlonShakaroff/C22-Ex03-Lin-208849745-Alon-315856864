@@ -29,12 +29,20 @@ namespace BasicFacebookFeatures
             FacebookService.s_CollectionLimit = 100;
             r_Random = new Random();
             r_FacebookUserManager = FacebookUserManager.Instance;
+            r_FacebookUserManager.SuccessfulLogin += FacebookUserManager_SuccessfulLogin;
             r_FormAlbums = (FormAlbums)SubFormFactory.CreateSubForm(SubFormFactory.eSubFormType.FormAlbums);
             r_FormCollage = (FormCollage)SubFormFactory.CreateSubForm(SubFormFactory.eSubFormType.FormCollage);
             r_FormGroups = (FormGroups)SubFormFactory.CreateSubForm(SubFormFactory.eSubFormType.FormGroups);
             r_FormPages = (FormPages)SubFormFactory.CreateSubForm(SubFormFactory.eSubFormType.FormPages);
             r_FormPosts = (FormPosts)SubFormFactory.CreateSubForm(SubFormFactory.eSubFormType.FormPosts);
             r_FormUserInfo = (FormUserInfo)SubFormFactory.CreateSubForm(SubFormFactory.eSubFormType.FormUserInfo);
+        }
+
+        private void FacebookUserManager_SuccessfulLogin()
+        {
+            setLoginEnable();
+            setEnableApplicationOptions();
+            fetchUserInformation();
         }
 
         private Color selectThemeColor()
@@ -97,17 +105,7 @@ namespace BasicFacebookFeatures
 
         private void buttonLogin_Click(object i_Sender, EventArgs i_E)
         {
-            if(r_FacebookUserManager.Login())
-            {
-                buttonLogin.Enabled = false;
-                setEnableApplicationOptions(k_IsEnableOptions);
-                setLoginEnable(!k_IsEnableOptions);
-                fetchUserInformation();
-            }
-            else
-            {
-                MessageBox.Show("Error occurred while trying to login ");
-            }
+            r_FacebookUserManager.Login();
         }
 
         private void fetchUserInformation()
@@ -116,23 +114,23 @@ namespace BasicFacebookFeatures
             labelProfileName.Text = r_FacebookUserManager.LoggedInUser.FirstName;
         }
 
-        private void setEnableApplicationOptions(bool i_IsEnable)
+        private void setEnableApplicationOptions()
         {
-            buttonUserInfo.Enabled = i_IsEnable;
-            buttonAlbums.Enabled = i_IsEnable;
-            buttonGroups.Enabled = i_IsEnable;
-            buttonPages.Enabled = i_IsEnable;
-            buttonPosts.Enabled = i_IsEnable;
-            buttonCollage.Enabled = i_IsEnable;
-            buttonLogout.Enabled = i_IsEnable;
-            pictureBoxCircleProfilePicture.Visible = i_IsEnable;
-            labelProfileName.Visible = i_IsEnable;
+            buttonUserInfo.Enabled = true;
+            buttonAlbums.Enabled = true;
+            buttonGroups.Enabled = true;
+            buttonPages.Enabled = true;
+            buttonPosts.Enabled = true;
+            buttonCollage.Enabled = true;
+            buttonLogout.Enabled = true;
+            pictureBoxCircleProfilePicture.Visible = true;
+            labelProfileName.Visible = true;
         }
 
-        private void setLoginEnable(bool i_IsEnable)
+        private void setLoginEnable()
         {
-            buttonLogout.Enabled = !i_IsEnable;
-            buttonLogin.Enabled = i_IsEnable;
+            buttonLogout.Enabled = true;
+            buttonLogin.Enabled = false;
         }
 
         private void buttonLogout_Click(object i_Sender, EventArgs i_E)

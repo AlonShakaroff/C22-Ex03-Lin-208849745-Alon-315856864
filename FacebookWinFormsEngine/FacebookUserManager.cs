@@ -13,6 +13,8 @@ namespace FacebookWinFormsEngine
         private static FacebookUserManager s_Instance = null;
         private LoginResult m_LoginResult;
 
+        public event Action SuccessfulLogin;
+
         private FacebookUserManager() 
         {
         }
@@ -38,7 +40,7 @@ namespace FacebookWinFormsEngine
 
         public FacebookUserCachingProxy LoggedInUser { get; private set; } = null;
 
-        public bool Login()
+        public void Login()
         {
             m_LoginResult = FacebookService.Login(
                 "768643954263924",
@@ -61,8 +63,10 @@ namespace FacebookWinFormsEngine
                 "pages_manage_posts",
                 "pages_read_user_content");
             LoggedInUser = !string.IsNullOrEmpty(m_LoginResult.AccessToken) ? new FacebookUserCachingProxy(m_LoginResult.LoggedInUser) : null;
-
-            return LoggedInUser != null;
+            if(LoggedInUser != null)
+            {
+                onSuccessfulLogin();
+            }
         }
 
         public void Logout()
@@ -98,6 +102,11 @@ namespace FacebookWinFormsEngine
             }
 
             return filteredPosts;
+        }
+
+        private void onSuccessfulLogin()
+        {
+            SuccessfulLogin.Invoke();
         }
     }
 }
