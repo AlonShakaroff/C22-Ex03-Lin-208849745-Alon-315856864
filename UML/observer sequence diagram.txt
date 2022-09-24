@@ -1,0 +1,29 @@
+title  Observer sequence diagram
+
+actor user
+participant "<link:facebook.com>:FacebookForm </link>" as FacebookForm
+participant "<link:facebook.com>:FacebookUserManager </link>" as FacebookUserManager
+entity "<link:facebook.com>:FacebookUserManager </link>" as UserManager
+participant "<link:facebook.com>:Facebook API </link>" as API
+
+activate user
+activate FacebookForm
+user->FacebookForm: Click Login button
+activate FacebookUserManager
+FacebookForm->FacebookUserManager: Gets FacebookUserManager instance
+FacebookUserManager->FacebookUserManager: Checks if instance already created
+FacebookUserManager-->FacebookForm: Returns FacebookUserManager instance
+deactivate FacebookUserManager
+activate UserManager
+FacebookForm->UserManager: Login to facebook
+activate API
+UserManager->(2)API: Login to facebook
+API->user: Get user credentials
+user-->API: Fill in credentials
+API-->(2)UserManager: Return login result
+deactivate API
+UserManager->UserManager: Invoke SuccessfulLogin
+UserManager->FacebookForm: Notify FacebookUserManager_SuccessfulLogin()
+deactivate UserManager
+FacebookForm-->user: Enable menu buttons and display user info
+

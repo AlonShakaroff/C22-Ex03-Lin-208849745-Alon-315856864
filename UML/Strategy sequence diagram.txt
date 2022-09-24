@@ -1,0 +1,32 @@
+title  Strategy sequence diagram
+
+actor user
+participant "<link:facebook.com>:FormAlbums </link>" as FormAlbums
+entity "<link:facebook.com>:r_AlbumsFilter </link>" as AlbumsFilter
+entity "<link:facebook.com>:FacebookUserManager </link>" as UserManager
+entity "<link:facebook.com>:IAlbumFilter </link>" as AlbumFilter
+
+activate user
+activate FormAlbums
+user->FormAlbums: Chooses filter option and fills parameter
+user->FormAlbums: Clicks on Filter Albums button
+alt User chose to filter by year created
+activate AlbumsFilter
+FormAlbums->AlbumsFilter: Creates a new AlbumFilterByYearCreated and puts it as the IAlbumFilter of r_AlbumsFilter
+else User chose to filter by minimum amount of photos
+FormAlbums->AlbumsFilter: Creates a new AlbumFilterByMinAmountOfPhotos created and puts it as the IAlbumFilter of r_AlbumsFilter
+end
+FormAlbums->FormAlbums: fetchAlbums()
+FormAlbums->AlbumsFilter: FilterAlbumList
+activate UserManager
+AlbumsFilter->(2)UserManager: Get user albums
+UserManager-->AlbumsFilter: Return user albums
+deactivate UserManager
+activate AlbumFilter
+loop foreach albums in user albums
+AlbumsFilter->AlbumFilter: Check if an album needs to be filtered
+AlbumFilter-->AlbumsFilter: Return True if the albums does not need to be filtered and false otherwise
+end
+deactivate AlbumFilter
+FormAlbums->AlbumsFilter: Iterate over the filtered albums and add each album to the albums listbox
+FormAlbums-->user: Display filtered albums
