@@ -35,14 +35,14 @@ namespace FacebookWinFormsEngine
             set => m_AlbumFilter = value;
         }
 
-        public void FilterAlbumList(int i_FilterParamater)
+        public void FilterAlbumList(int i_FilterParameter)
         {
             if(m_AlbumFilter != null && r_FacebookUserManager.LoggedInUser != null)
             {
                 r_FilteredAlbumsList.Clear();
                 foreach(Album currentAlbum in r_FacebookUserManager.LoggedInUser.Albums)
                 {
-                    if(m_AlbumFilter.FilterAlbum(currentAlbum, i_FilterParamater))
+                    if(m_AlbumFilter.FilterAlbum(currentAlbum, i_FilterParameter))
                     {
                         r_FilteredAlbumsList.Add(currentAlbum);
                     }
