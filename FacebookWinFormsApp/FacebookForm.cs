@@ -10,7 +10,6 @@ namespace BasicFacebookFeatures
 {
     public partial class FacebookForm : Form
     {
-        private const bool k_IsEnableOptions = true;
         private readonly FacebookUserManager r_FacebookUserManager;
         private readonly Random r_Random;
         private readonly FormAlbums r_FormAlbums;
