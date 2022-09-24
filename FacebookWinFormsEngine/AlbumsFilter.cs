@@ -8,13 +8,13 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookWinFormsEngine
 {
-    public class MyFilteredAlbums : IEnumerable<Album>
+    public class AlbumsFilter : IEnumerable<Album>
     {
         private readonly List<Album> r_FilteredAlbumsList;
         private IAlbumFilter m_AlbumFilter;
         private readonly FacebookUserManager r_FacebookUserManager;
 
-        public MyFilteredAlbums()
+        public AlbumsFilter()
         {
             r_FilteredAlbumsList = new List<Album>();
             r_FacebookUserManager = FacebookUserManager.Instance;

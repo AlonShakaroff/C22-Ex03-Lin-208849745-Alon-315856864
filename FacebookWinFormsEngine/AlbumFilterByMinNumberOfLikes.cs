@@ -7,11 +7,11 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookWinFormsEngine
 {
-    public class AlbumFilterByAmountOfPhotos : IAlbumFilter
+    public class AlbumFilterByMinNumberOfLikes : IAlbumFilter
     {
-        public bool FilterAlbum(Album i_AlbumToCheck)
+        public bool FilterAlbum(Album i_AlbumToCheck, int i_MinNumberOfLikes)
         {
-            return i_AlbumToCheck.Count < 2;
+            return i_AlbumToCheck.LikedBy.Count < i_MinNumberOfLikes;
         }
     }
 }

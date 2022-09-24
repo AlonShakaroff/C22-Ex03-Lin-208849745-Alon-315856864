@@ -11,14 +11,14 @@ namespace BasicFacebookFeatures.SubForms
     public partial class FormAlbums : Form
     {
         private readonly FacebookUserManager r_FacebookUserManager;
-        private readonly MyFilteredAlbums r_FilterAlbum;
+        private readonly AlbumsFilter r_FilterAlbum;
 
         public FormAlbums()
         {
             InitializeComponent();
             r_FacebookUserManager = FacebookUserManager.Instance;
             this.HandleCreated += FormAlbums_HandleCreated;
-            r_FilterAlbum = new MyFilteredAlbums();
+            r_FilterAlbum = new AlbumsFilter();
         }
 
         private void FormAlbums_HandleCreated(object i_Sender, EventArgs i_E)
@@ -94,12 +94,12 @@ namespace BasicFacebookFeatures.SubForms
 
                 if(radioButtonSortByMessageLength.Checked)
                 {
-                    r_FilterAlbum.AlbumFilter = new AlbumFilterByLength();
+                    r_FilterAlbum.AlbumFilter = new AlbumFilterByMinNumberOfLikes();
                 }
 
                 if(radioButtonSortByAmountOfPhotos.Checked)
                 {
-                    r_FilterAlbum.AlbumFilter = new AlbumFilterByAmountOfPhotos();
+                    r_FilterAlbum.AlbumFilter = new AlbumFilterByMinAmountOfPhotos();
                 }
 
                 fetchAlbums();
