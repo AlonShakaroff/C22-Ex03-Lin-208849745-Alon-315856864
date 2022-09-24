@@ -72,7 +72,7 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="BasicFacebookFeatures.SubForms.FormAlbums" Collapsed="true">
+  <Class Name="BasicFacebookFeatures.SubForms.FormAlbums">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIgAAEGABGAAAAkEAACAEAQCCAhIAAABAAAAAQAgQAA=</HashCode>
