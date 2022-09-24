@@ -40,8 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AlbumFilterByMinAmountOfPhotos.cs" />
-    <Compile Include="AlbumFilterByDate.cs" />
-    <Compile Include="AlbumFilterByMinNumberOfLikes.cs" />
+    <Compile Include="AlbumFilterByYearCreated.cs" />
     <Compile Include="FacebookUserManager.cs" />
     <Compile Include="FacebookUserCachingProxy.cs" />
     <Compile Include="IAlbumFilter.cs" />

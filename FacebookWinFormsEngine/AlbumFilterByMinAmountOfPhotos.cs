@@ -11,7 +11,7 @@ namespace FacebookWinFormsEngine
     {
         public bool FilterAlbum(Album i_AlbumToCheck, int i_MinAmountOfPhotos)
         {
-            return i_AlbumToCheck.Count < i_MinAmountOfPhotos;
+            return i_AlbumToCheck.Count >= i_MinAmountOfPhotos;
         }
     }
 }

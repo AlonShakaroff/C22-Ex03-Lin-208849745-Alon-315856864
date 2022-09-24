@@ -7,7 +7,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookWinFormsEngine
 {
-    public class AlbumFilterByDate : IAlbumFilter
+    public class AlbumFilterByYearCreated : IAlbumFilter
     {
         public bool FilterAlbum(Album i_AlbumToCheck, int i_YearCreated)
         {

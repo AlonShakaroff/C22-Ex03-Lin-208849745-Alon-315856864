@@ -11,14 +11,14 @@ namespace BasicFacebookFeatures.SubForms
     public partial class FormAlbums : Form
     {
         private readonly FacebookUserManager r_FacebookUserManager;
-        private readonly AlbumsFilter r_FilterAlbum;
+        private readonly AlbumsFilter r_AlbumsFilter;
 
         public FormAlbums()
         {
             InitializeComponent();
             r_FacebookUserManager = FacebookUserManager.Instance;
             this.HandleCreated += FormAlbums_HandleCreated;
-            r_FilterAlbum = new AlbumsFilter();
+            r_AlbumsFilter = new AlbumsFilter();
         }
 
         private void FormAlbums_HandleCreated(object i_Sender, EventArgs i_E)
@@ -46,8 +46,8 @@ namespace BasicFacebookFeatures.SubForms
             }
             else
             {
-                r_FilterAlbum.FilterAlbumList();
-                foreach(Album userAlbum in r_FilterAlbum)
+                r_AlbumsFilter.FilterAlbumList((int)numericUpDownParameter.Value);
+                foreach(Album userAlbum in r_AlbumsFilter)
                 {
                     listBoxAlbumsList.Invoke(new Action(() => listBoxAlbumsList.Items.Add(userAlbum)));
                 }
@@ -87,19 +87,14 @@ namespace BasicFacebookFeatures.SubForms
         {
             if(listBoxAlbumsList.Items.Count != 0)
             {
-                if(radioButtonSortByDate.Checked)
+                if(radioButtonFilterByYearCreated.Checked)
                 {
-                    r_FilterAlbum.AlbumFilter = new AlbumFilterByDate();
+                    r_AlbumsFilter.AlbumFilter = new AlbumFilterByYearCreated();
                 }
 
-                if(radioButtonSortByMessageLength.Checked)
+                if(radioButtonFilterByMinAmountOfPhotos.Checked)
                 {
-                    r_FilterAlbum.AlbumFilter = new AlbumFilterByMinNumberOfLikes();
-                }
-
-                if(radioButtonSortByAmountOfPhotos.Checked)
-                {
-                    r_FilterAlbum.AlbumFilter = new AlbumFilterByMinAmountOfPhotos();
+                    r_AlbumsFilter.AlbumFilter = new AlbumFilterByMinAmountOfPhotos();
                 }
 
                 fetchAlbums();
@@ -107,4 +102,3 @@ namespace BasicFacebookFeatures.SubForms
         }
     }
 }
-

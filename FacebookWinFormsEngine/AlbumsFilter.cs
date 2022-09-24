@@ -11,8 +11,8 @@ namespace FacebookWinFormsEngine
     public class AlbumsFilter : IEnumerable<Album>
     {
         private readonly List<Album> r_FilteredAlbumsList;
-        private IAlbumFilter m_AlbumFilter;
         private readonly FacebookUserManager r_FacebookUserManager;
+        private IAlbumFilter m_AlbumFilter;
 
         public AlbumsFilter()
         {
@@ -35,14 +35,14 @@ namespace FacebookWinFormsEngine
             set => m_AlbumFilter = value;
         }
 
-        public void FilterAlbumList()
+        public void FilterAlbumList(int i_FilterParamater)
         {
             if(m_AlbumFilter != null && r_FacebookUserManager.LoggedInUser != null)
             {
                 r_FilteredAlbumsList.Clear();
                 foreach(Album currentAlbum in r_FacebookUserManager.LoggedInUser.Albums)
                 {
-                    if(m_AlbumFilter.FilterAlbum(currentAlbum))
+                    if(m_AlbumFilter.FilterAlbum(currentAlbum, i_FilterParamater))
                     {
                         r_FilteredAlbumsList.Add(currentAlbum);
                     }
