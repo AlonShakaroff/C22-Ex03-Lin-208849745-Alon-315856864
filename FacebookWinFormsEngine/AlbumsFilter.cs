@@ -27,7 +27,7 @@ namespace FacebookWinFormsEngine
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         public IAlbumFilter AlbumFilter

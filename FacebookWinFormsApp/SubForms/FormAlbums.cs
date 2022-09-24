@@ -83,7 +83,7 @@ namespace BasicFacebookFeatures.SubForms
             UIThemeColor.LoadTheme(panelAlbums);
         }
 
-        private void buttonSortAlbums_Click(object i_Sender, EventArgs i_E)
+        private void buttonFilterAlbums_Click(object i_Sender, EventArgs i_E)
         {
             if(listBoxAlbumsList.Items.Count != 0)
             {

@@ -105,7 +105,7 @@
             this.buttonFilterAlbums.TabIndex = 6;
             this.buttonFilterAlbums.Text = "Filter albums";
             this.buttonFilterAlbums.UseVisualStyleBackColor = true;
-            this.buttonFilterAlbums.Click += new System.EventHandler(this.buttonSortAlbums_Click);
+            this.buttonFilterAlbums.Click += new System.EventHandler(this.buttonFilterAlbums_Click);
             // 
             // groupBoxSortingButtons
             // 
